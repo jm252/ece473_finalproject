@@ -1,0 +1,39 @@
+ECE 473 Final Project Proposal 
+Eden Bendory, Estelle Botton, Nicole Klausner, and Jonathan Mindel
+
+Market Gap
+While Etherscan provides the capability to trace any address or 
+transaction on the Ethereum blockchain, there is a notable absence of a 
+systematic method to classify addresses or understand their function 
+within the ecosystem. An example is the MEV Bot, which exploits miner 
+extractable value using specific transaction patterns. 
+
+Our Plan
+Our project aims to address this gap by implementing a Smart Blockchain 
+Explorer. Drawing inspiration from Topic 2 Idea 11, our approach focuses 
+on devising an algorithm to categorize addresses based on their 
+transaction behaviors. Specifically, we will target addresses frequently 
+interacting with flash loan providers and decentralized exchanges, as 
+MEV attacks (in particular: sandwich, liquidation, and flashloan) often 
+utilize these platforms to perform trades. Once addresses have been 
+identified, transactions can be inspected to identify transaction 
+patterns common in MEV attacks. 
+
+Building & Testing
+Our development process will begin by determining a mechanism to query 
+the Ethereum blockchain by address, which can likely be accomplished via 
+prebuilt libraries and APIs. By centering our searches around the 
+addresses of common decentralized exchanges and flash loan providers 
+such as Uniswap, Aeve, and Dydx, we aim to pinpoint the addresseses that 
+most frequently interact with the tools necessary for MEV attacks. This 
+step will lay the foundation of our algorithm’s address detection 
+mechanism. Following this, we will refine our algorithm with extensive 
+testing using blockchain data. To validate data, we will compile a list 
+of known addresses and manually label whether or not they are MEV bots, 
+and compare this with the output of our identification model. 
+
+Development Schedule
+Week 8 – Develop method for exploring blockchain centered around certain addresses 
+Week 9 - Develop algorithm for identifying MEV bot addresses 
+Week 10 – Finish up and clean code
+Week 11 – Work on and complete presentation 
