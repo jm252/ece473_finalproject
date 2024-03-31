@@ -1,11 +1,108 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&display=swap">
-    <title> Insert Name</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>simplescan.ai</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(3, 3, 23);
+      margin: 10px;
+      padding: 0;
+    }
+
+    h1 {
+      color: white;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    #search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40vh; /* Adjusted height to 80vh */
+      margin-top: 20vh; /* Moved search container further up */
+      position: relative; /* Added for positioning the cursor */
+    }
+
+    input[type="text"] {
+      width: 80%; /* Increased the width */
+      max-width: 600px; /* Increased the maximum width */
+      font-size: 20px; /* Increased font size */
+      position: relative; /* Added for positioning the cursor */
+      padding-right: 30px; /* Adjust for cursor */
+      background-color: rgb(13, 13, 33); /* Slightly lighter navy */
+      color: white; /* Text color */
+      border: none; /* Remove default border */
+    }
+    
+    input[type="text"]:focus {
+      outline: none; /* Remove default focus outline */
+    }
+
+    /* Floating Cubes Animation */
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+    }
+
+    .cube {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #6599bc;
+      animation: float 10s infinite alternate ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+      }
+      50% {
+        transform: translate3d(200px, 200px, 200px) rotateX(180deg) rotateY(180deg);
+      }
+      100% {
+        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+      }
+    }
+  </style>
 </head>
 <body>
-    Hello
+  <div class="w3-container w3-center">
+    <h1>simplescan.ai</h1>
+  </div>
+  <div id="search-container">
+    <input type="text" class="w3-input w3-round-large w3-border" placeholder="" autofocus>
+  </div>
+
+  <!-- Floating Cubes Container -->
+  <div class="container">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
+
+  <script>
+    // Simulate typing the placeholder text
+    var placeholderText = "Enter Address";
+    var inputField = document.querySelector('input[type="text"]');
+
+    function typePlaceholderText() {
+      var i = 0;
+      var intervalId = setInterval(function() {
+        inputField.placeholder += placeholderText[i];
+        i++;
+        if (i === placeholderText.length) {
+          clearInterval(intervalId);
+        }
+      }, 100);
+    }
+
+    typePlaceholderText();
+  </script>
 </body>
+</html>
