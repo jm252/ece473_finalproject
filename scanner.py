@@ -17,7 +17,7 @@ def get_contract_code(addy) -> str:
     """
 
     # verify that address is contract ????
-    
+
     url = f"https://api.etherscan.io/api?module=contract&action=getsourcecode&address={addy}&apikey={API_KEY}"
 
     try:
