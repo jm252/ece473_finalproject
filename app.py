@@ -3,6 +3,7 @@ import flask
 import os
 import datetime
 import scanner
+import analysis
 
 # ----------------------------------------------------------------------
 
@@ -23,10 +24,15 @@ def index():
 def scan():
     # get address from app
     address = flask.request.args.get("address")
+    print(address)
 
-    # get contract_code
+    # get contract code
     contract_code = scanner.get_contract_code(address)
 
-    # analyse with GPT
+    # get contract analysis 
+    contract_summary = analysis.smart_contract_summary(contract_code)
 
-    return  
+    html_code = flask.render_template("results.html", contract_summary=contract_summary)
+    response = flask.make_response(html_code)
+    
+    return response 
