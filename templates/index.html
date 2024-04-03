@@ -114,27 +114,14 @@
     typePlaceholderText();
 
     // display search results
-    $(document).ready(function() {
-      $('#address-input').keypress(function(event) {
-        if (event.which === 13) {
-          event.preventDefault();
-          var address = $('#address-input').val();
-          $.ajax({
-            url: '/scan',
-            type: 'GET',
-            data: {
-              address: address
-            },
-            success: function(response) {
-              console.log(response)
-              $('#results').html(response);
-            },
-            error: function(error) {
-              console.error('Error:', error);
-            }
-          });
-        }
-      });
+    var addressInput = document.getElementById("address-input");
+
+    addressInput.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        var address = addressInput.value;
+        window.location.href = `/scan?address=${address}`;
+      }
     });
   </script>
 

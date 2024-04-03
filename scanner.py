@@ -35,10 +35,12 @@ def get_contract_code(addy) -> str:
         print("Error:", str(e))
         return 
 
-
 if __name__ == "__main__":
     addy = "0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413"  
 
     contract_code = get_contract_code(addy)
 
     print(contract_code)
+
+
+

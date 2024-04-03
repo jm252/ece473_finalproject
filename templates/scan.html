@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Results - simplescan.ai</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(3, 3, 23);
+      margin: 10px;
+      padding: 0;
+    }
+
+    h1 {
+      color: white;
+      font-family: 'Roboto Condensed', sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .back-arrow {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 9999; /* Ensure it's above other elements */
+    }
+
+    .back-arrow:hover {
+      color: #dddddd;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row; /* Display items horizontally */
+      height: 100vh;
+    }
+
+    .box {
+      background-color: #0d0d21;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #fff;
+      margin: 10px;
+    }
+
+    .contract-class {
+      color: #ccc;
+      background-color: #0d0d21;
+    }
+
+    .contract-summary {
+      color: #ccc;
+      background-color: #0d0d21;
+    }
+  </style>
+</head>
+<body>
+  <div id="search-container">
+    <div class="w3-container w3-center">
+      <h1>simplescan.ai</h1>
+    </div>
+    <a href="/" class="back-arrow">&#8592;</a> <!-- Back Arrow -->
+    <div class="container">
+        <div class="box contract-class">
+          <h2>Contract Class</h2>
+          <p>{{ contract_class }}</p>
+        </div>
+        <div class="box contract-summary">
+          <h2>Contract Summary</h2>
+          <p>{{ contract_summary }}</p>
+        </div>
+    </div>
+</body>
+</html>
