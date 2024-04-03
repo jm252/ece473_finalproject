@@ -18,6 +18,10 @@
       font-family: 'Roboto Condensed', sans-serif;
     }
 
+    p {
+        color: white
+      }
+
     #search-container {
       display: flex;
       justify-content: center;
@@ -69,9 +73,6 @@
         transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
       }
 
-      p {
-        color: white
-      }
     }
   </style>
 </head>
@@ -93,6 +94,7 @@
 
   <div id="results"></div>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     // Simulate typing the placeholder text
     var placeholderText = "Enter Address";
@@ -111,19 +113,28 @@
 
     typePlaceholderText();
 
-    var addressInput = document.getElementById("address-input");
-    addressInput.addEventListener("keyup", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        var address = addressInput.value;
-        fetch(`/scan?address=${address}`)
-          .then(response => {
-            print(response.text())
-          })
-          .catch(error => {
-            console.error('Error:', error);
+    // display search results
+    $(document).ready(function() {
+      $('#address-input').keypress(function(event) {
+        if (event.which === 13) {
+          event.preventDefault();
+          var address = $('#address-input').val();
+          $.ajax({
+            url: '/scan',
+            type: 'GET',
+            data: {
+              address: address
+            },
+            success: function(response) {
+              console.log(response)
+              $('#results').html(response);
+            },
+            error: function(error) {
+              console.error('Error:', error);
+            }
           });
-      }
+        }
+      });
     });
   </script>
 

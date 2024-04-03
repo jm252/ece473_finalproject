@@ -31,6 +31,7 @@ def scan():
 
     # get contract analysis 
     contract_summary = analysis.smart_contract_summary(contract_code)
+    print(contract_summary)
 
     html_code = flask.render_template("results.html", contract_summary=contract_summary)
     response = flask.make_response(html_code)
