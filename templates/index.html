@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
   <style>
+    .logo {
+      position: fixed;
+      top: 20px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      width: 100px; /* Adjust the width of your logo */
+      height: auto; /* Automatically adjust height to maintain aspect ratio */
+    }
     body {
       background-color: rgb(3, 3, 23);
       margin: 10px;
@@ -74,10 +81,35 @@
       }
 
     }
+
+    /* Loading animation */
+    .loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      display: none; /* Hide by default */
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 8px solid #3498db;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 
 <body>
+  <img src="/static/logo.jpg" class="logo">
   <div class="w3-container w3-center">
     <h1>simplescan.ai</h1>
   </div>
@@ -90,6 +122,11 @@
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
+  </div>
+
+  <!-- Loading Animation -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>
   </div>
 
   <div id="results"></div>
@@ -113,11 +150,13 @@
 
     typePlaceholderText();
 
-    // display search results
+    // Display search results
     var addressInput = document.getElementById("address-input");
 
     addressInput.addEventListener("keyup", function(event) {
       if (event.key === "Enter") {
+        $("#search-container").hide();
+        $("#loading").show()
         event.preventDefault();
         var address = addressInput.value;
         window.location.href = `/scan?address=${address}`;
