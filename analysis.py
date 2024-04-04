@@ -86,3 +86,11 @@ def smart_contract_class(smart_contract):
     """
   response = model.generate_content(prompt + smart_contract)
   return response.text
+
+def smart_contract_read(smart_contract):
+  response = model.generate_content('Please list all of the read only functions. On line 1, provide the function signature. On the next line, describe its input and output as well as purpose in 1-2 sentences.' + smart_contract)
+  return response.text
+
+def smart_contract_write(smart_contract): 
+  response = model.generate_content('Please list all of the write only functions. On line 1, provide the function signature. On the next line, describe its input and output as well as purpose in 1-2 sentences.' + smart_contract)
+  return response.text
