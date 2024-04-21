@@ -28,20 +28,22 @@ def scan():
 
     # get contract code
     contract_code = scanner.get_contract_code(address)
+    print(contract_code)
 
-    # get contract analysis 
+    # get contract summary and class 
     contract_summary = analysis.smart_contract_summary(contract_code)
+    contract_class = analysis.smart_contract_class(address)
 
-    contract_class = analysis.smart_contract_class(contract_code)
-
-    contract_read_functions = analysis.smart_contract_read(contract_code)
-    contract_write_functions = analysis.smart_contract_write(contract_code)
-    print(contract_read_functions)
-    print(contract_write_functions)
+    # get contract read and write functions
+    read_functions, write_functions = scanner.get_contract_functions(address)
+    print(write_functions)
 
     html_code = flask.render_template("scan.html", 
                                             contract_class = contract_class, 
-                                            contract_summary=contract_summary)
+                                            contract_summary=contract_summary,
+                                            write_functions = write_functions,
+                                            read_functions = read_functions,
+                                           )
     response = flask.make_response(html_code)
     
     return response 

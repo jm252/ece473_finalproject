@@ -11,6 +11,7 @@
       background-color: rgb(3, 3, 23);
       margin: 10px;
       padding: 0;
+      font-family: 'Roboto', sans-serif;
     }
 
     h1 {
@@ -37,9 +38,9 @@
     .container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-direction: row; /* Display items horizontally */
-      height: 100vh;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding-top: 50px;
     }
 
     .box {
@@ -48,16 +49,15 @@
       border-radius: 10px;
       border: 2px solid #fff;
       margin: 10px;
+      flex: 1 1 100%; /* Adjust width to 100% for single box */
     }
 
-    .contract-class {
+    .contract-class, .contract-summary, .function-box {
       color: #ccc;
-      background-color: #0d0d21;
     }
 
-    .contract-summary {
-      color: #ccc;
-      background-color: #0d0d21;
+    .contract-summary p, .contract-class p, .function-box p {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -68,13 +68,26 @@
     </div>
     <a href="/" class="back-arrow">&#8592;</a> <!-- Back Arrow -->
     <div class="container">
-        <div class="box contract-class">
-          <h2>Contract Class</h2>
-          <p>{{ contract_class }}</p>
+        <div class="box">
+          <div class="contract-class">
+            <h2>Contract Class</h2>
+            <p>{{ contract_class }}</p>
+          </div>
+          <div class="contract-summary">
+            <h2>Contract Summary</h2>
+            <p>{{ contract_summary }}</p>
+          </div>
         </div>
-        <div class="box contract-summary">
-          <h2>Contract Summary</h2>
-          <p>{{ contract_summary }}</p>
+        <div class="box function-box">
+          <h2>Functions</h2>
+          <h3>Write Functions</h3>
+          {% for function in write_functions %}
+            <p>{{ function }}</p>
+          {% endfor %}
+          <h3>Read Functions</h3>
+          {% for function in read_functions %}
+            <p>{{ function }}</p>
+          {% endfor %}
         </div>
     </div>
 </body>
