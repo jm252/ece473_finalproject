@@ -39,6 +39,7 @@ def scan():
     print(write_functions)
 
     html_code = flask.render_template("scan.html", 
+                                            address = address,
                                             contract_class = contract_class, 
                                             contract_summary=contract_summary,
                                             write_functions = write_functions,
