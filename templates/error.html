@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scan Results - simplescan.ai</title>
+  <title>Error Displaying Results - simplescan.ai</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
   <style>
@@ -68,24 +68,12 @@
     </div>
     <a href="/" class="back-arrow">&#8592;</a> <!-- Back Arrow -->
     <div class="container">
-        <div class="box">
-          <div class="contract-class">
-            <h2>Contract Class</h2>
-            <p>{{ contract_class }}</p>
-          </div>
-          <div class="contract-summary">
-            <h2>Contract Summary</h2>
-            <p>{{ contract_summary }}</p>
-            <a href="https://etherscan.io/address/{{address}}">View Address on Etherscan</a>
-          </div>
+      <div class="box">
+        <div class="contract-class">
+          <h2>This Is Not A Contract Address</h2>
+          <p>Please input a valid contract address and try again.</p>
         </div>
-        <div class="box function-box">
-          <h2>Functions</h2>
-          <h3>Write Functions</h3>
-          <p style="white-space: pre-wrap;">{{read_functions}}</p>
-          <h3>Read Functions</h3>
-          <p style="white-space: pre-wrap;">{{write_functions}}</p>
-        </div>
-    </div>
+      </div>
+  </div>
 </body>
 </html>

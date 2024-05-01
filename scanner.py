@@ -2,9 +2,41 @@ import os
 from dotenv import load_dotenv
 import requests
 import json
+import re
+# from eth_utils import decode_hex
+# from eth_utils.curried import keccak
 
 load_dotenv()
 API_KEY = os.getenv("ETHERSCAN_API_KEY")
+
+# def _is_checksum_address(address):
+#     """
+#     Check if the given string is a valid Ethereum checksum address
+#     """ 
+#     address = address.lower().replace('0x','')
+#     address_hash = keccak(decode_hex(address))  
+
+#     for i in range(40):
+#         address_hash_byte = address_hash[i]
+#         if int(address[i], 16) > 7 and hex(address_hash_byte) != address[i]:
+#             return False
+#         if int(address[i], 16) <= 7 and hex(address_hash_byte).upper() != address[i]:
+#             return False
+#     return True
+
+
+def is_address(addy) -> bool:
+    """
+    Check if the given string is a valid Ethereum address
+    """
+    if not re.match(r"^0x[a-fA-F0-9]{40}$", addy):
+        return False 
+    
+    # # checksum 
+    # if not _is_checksum_address(addy):
+    #     return False
+        
+    return True
 
 def get_contract_code(addy) -> str:
     """
@@ -58,7 +90,7 @@ def get_contract_functions(addy):
                     if outputs_str:
                         func_signature += f" returns ({outputs_str})"
                     
-                    print(func_signature)
+                    print(func_signature )
                     if not item.get('constant', False):
                         write_functions.append(func_signature)
                     else:

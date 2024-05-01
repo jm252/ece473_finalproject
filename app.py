@@ -26,8 +26,22 @@ def scan():
     address = flask.request.args.get("address")
     print(address)
 
+    # validate address; if not valid - display error
+    if not scanner.is_address(address):
+        print('Invalid Ethereum address.')
+        html_code = flask.render_template("error.html")
+        response = flask.make_response(html_code)
+        return response 
+
+    # check if address contract
+
     # get contract code
     contract_code = scanner.get_contract_code(address)
+    if contract_code is '': 
+        print('Invalid Ethereum address.')
+        html_code = flask.render_template("error.html")
+        response = flask.make_response(html_code)
+        return response 
     print(contract_code)
 
     # get contract summary and class 
@@ -36,7 +50,9 @@ def scan():
 
     # get contract read and write functions
     read_functions, write_functions = scanner.get_contract_functions(address)
-    print(write_functions)
+    
+    read_functions = analysis.summarize_read_functions(read_functions, contract_code)
+    write_functions = analysis.summarize_write_functions(write_functions, contract_code)
 
     html_code = flask.render_template("scan.html", 
                                             address = address,

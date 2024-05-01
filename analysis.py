@@ -34,21 +34,39 @@ def smart_contract_summary(smart_contract):
   return response.text
 
 # return smart contract read functions given code
-def smart_contract_read(smart_contract):
+def summarize_read_functions(read_functions, smart_contract):
    response = client.chat.completions.create(
-   model="gpt-3.5-turbo",
+   model="gpt-4-turbo",
    messages=[
-    {"role": "system", "content": "You are a smart contract assistant. You read a smart contracts and identify which functions are read and which are write "},
-    {"role": "user", "content": "Please list all of the read only functions. On line 1, provide the function signature. On the next line, describe its input and output as well as purpose in 1-2 sentences. Here is the contract: " + smart_contract},
+    {"role": "system", "content": "You are a smart contract assistant. You read a smart contract and a list of function signatures and summarize each function based on it's corresponding code."},
+    {"role": "user", "content": read_function_prompt + ''.join(str(func) for func in read_functions)},
+    {"role": "assistant", "content": "Here is the smart contract to base your answer off of: " + smart_contract},
    ])
    return response.choices[0].message.content
 
 # return smart contract write functions given code 
-def smart_contract_write(smart_contract): 
+def summarize_write_functions(write_functions, smart_contract): 
    response = client.chat.completions.create(
-   model="gpt-3.5-turbo",
+   model="gpt-4-turbo",
    messages=[
-      {"role": "system", "content": "You are a smart contract assistant. You read a smart contracts and identify which functions are read and which are write "},
-      {"role": "user", "content": "Please list all of the write only functions. On line 1, provide the function signature. On the next line, describe its input and output as well as purpose in 1-2 sentences. Here is the contract: " + smart_contract},
+       {"role": "user", "content": write_function_prompt + ''.join(str(func) for func in write_functions)},
+      {"role": "assistant", "content": "Here is the smart contract to base your answer off of: " + smart_contract},
    ])
    return response.choices[0].message.content
+
+
+read_function_prompt = """ 
+Please list all of the read only functions provided in this list and a summary for each one. On line 1, provide the function signature. On the next line, describe the function purpose in 1-2 sentences according to the contract provided to you. Do not add extra characters, just use newline spaces and ensure consistent formatting throughout. Here is an example: 
+name() returns (string)
+This function provides the name of the token.
+
+And here are the read only functions:
+"""
+write_function_prompt = """
+Please list all of the write only functions provided in this list and a summary for each one. On line 1, provide the function signature. On the next line, describe the function purpose in 1-2 sentences according to the contract provided to you. Do not add extra characters, just use newline spaces and ensure consistent formatting throughout. Here is an example: 
+name() returns (string)
+This function provides the name of the token.
+
+And here are the write only functions:
+"""
+
