@@ -9,7 +9,6 @@ load_dotenv()
 genai_api_key = os.getenv("GENAI_API_KEY")
 
 # set up openai
-os.environ["OPENAI_API_KEY"] = "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"
 client = OpenAI()
 
 # set up genai
