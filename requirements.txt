@@ -3,5 +3,4 @@ google-generativeai
 python-dotenv
 Flask
 requests
-JSON
 regex
