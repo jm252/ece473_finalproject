@@ -1,4 +1,3 @@
-python-pip
 openai
 google-generativeai
 python-dotenv
