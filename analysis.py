@@ -18,12 +18,12 @@ model = genai.GenerativeModel('gemini-pro')
 # ----------------------------------------------------------------------
 
 # classify smart contract given code
-def smart_contract_class(smart_contract):
+def smart_contract_class(address, smart_contract):
    response = client.chat.completions.create(
-   model="gpt-4",
+   model="gpt-4-turbo",
    messages=[
     {"role": "system", "content": "You are a smart contract assistant. You read a smart contracts and classify it into 1 of 10 categories"},
-    {"role": "user", "content": "Classify this smart contract into one of the following 10 categories. Here are the 10 categories, comma seperated. MEV Bot Contracts, DeFi Protocol Contracts, NFT Contracts, Gaming Contracts, DAO Contracts, DEX Contracts, Oracle Contracts, Governance Contracts, Stablecoin Contracts, Tokenization Contracts. Your answer should be just a single category from the sentence prior -- no extra words. Here is the contract to classify: " + smart_contract},
+    {"role": "user", "content": "Classify this smart contract into one of the following 10 categories. Here are the 10 categories, comma seperated. MEV Bot Contracts, DeFi Protocol Contracts, NFT Contracts, Gaming Contracts, DAO Contracts, DEX Contracts, Oracle Contracts, Governance Contracts, Stablecoin Contracts, Tokenization Contracts. Your answer should be just a single category from the sentence prior -- no extra words. Here is the contract to classify: " + address + smart_contract},
    ])
    return response.choices[0].message.content
 

@@ -37,7 +37,7 @@ def scan():
 
     # get contract code
     contract_code = scanner.get_contract_code(address)
-    if contract_code is '': 
+    if contract_code == '': 
         print('Invalid Ethereum address.')
         html_code = flask.render_template("error.html")
         response = flask.make_response(html_code)
@@ -46,7 +46,7 @@ def scan():
 
     # get contract summary and class 
     contract_summary = analysis.smart_contract_summary(contract_code)
-    contract_class = analysis.smart_contract_class(address)
+    contract_class = analysis.smart_contract_class(address, contract_code)
 
     # get contract read and write functions
     read_functions, write_functions = scanner.get_contract_functions(address)
