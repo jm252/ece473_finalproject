@@ -1,0 +1,11 @@
+os
+PyPI
+openai
+google-generativeai
+dotenv
+flask
+scanner
+requests
+json
+re
+sys
