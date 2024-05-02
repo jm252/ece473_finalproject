@@ -1,11 +1,8 @@
-os
 PyPI
 openai
 google-generativeai
-dotenv
-flask
-scanner
+python-dotenv
+Flask
 requests
 json
 re
-sys
