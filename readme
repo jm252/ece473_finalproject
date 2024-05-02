@@ -1,4 +1,6 @@
-source ~/.virtualenvs/cos333/bin/activate
-DAO: 0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413
+Welcome to simplescan.ai!
 
-https://docs.etherscan.io/api-endpoints/contracts
+simplescan.ai is a web product that allows users to query the blockchain and understand the purpose and function of smart contracts from a macro lens.
+
+To view live website: https://simplescanai.onrender.com/
+To view blog post: https://www.notion.so/simplescan-ai-a9a6242a386f4d8d9736b1f78e8f1d1b
